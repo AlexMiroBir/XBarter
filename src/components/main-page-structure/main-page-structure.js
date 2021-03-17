@@ -1,8 +1,8 @@
 import React from 'react';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
-import {createMuiTheme, CssBaseline, Grid, ThemeProvider, Typography} from "@material-ui/core";
-import {useDispatch, useSelector} from "react-redux";
-//////////////////////////////////////
+import {Box, createMuiTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
+import {useSelector} from "react-redux";
+
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,22 +16,21 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import FlareSharpIcon from '@material-ui/icons/FlareSharp';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import TouchAppSharpIcon from '@material-ui/icons/TouchAppSharp';
+import AccountBoxSharpIcon from '@material-ui/icons/AccountBoxSharp';
 import Header from "../header/index";
-
-
-
-
+import {useHistory} from "react-router-dom";
 
 
 const icon = (text) => {
     switch (text) {
 
-        case "sun":
-            return <FlareSharpIcon/>;
-        case 'Drafts':
-            return <FlareSharpIcon/>;
+        case 'Profile':
+            return <AccountBoxSharpIcon/>;
+        case "Swipee":
+            return <TouchAppSharpIcon/>;
+
         ///...............
         default:
             return <InboxIcon/>
@@ -102,14 +101,14 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         padding: theme.spacing(3),
     },
-    headerToolbar:{
+    headerToolbar: {
         backgroundColor: "rgb(131,58,180)",
         background: 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)',
 
     },
 
-    leftSide:{
-        backgroundColor: {}  ,
+    leftSide: {
+        backgroundColor: {},
     }
 }));
 
@@ -119,16 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainPage = ({include}) => {
 
-
-
-
-
-
-
-
-
-
-
+    let history = useHistory();
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -171,8 +161,6 @@ const MainPage = ({include}) => {
     });
 
 
-
-
     return (
         <>
 
@@ -190,10 +178,7 @@ const MainPage = ({include}) => {
                     >
 
 
-
-
                         <Toolbar className={classes.headerToolbar}>
-
 
 
                             <IconButton
@@ -207,7 +192,6 @@ const MainPage = ({include}) => {
                             >
                                 <MenuIcon/>
                             </IconButton>
-
 
 
                             <Header/>
@@ -231,15 +215,15 @@ const MainPage = ({include}) => {
                         }}
                     >
                         <div className={classes.toolbar}>
-                            Скрытое Место
+                            Menu
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
                             </IconButton>
                         </div>
                         <Divider/>
                         <List>
-                            {['Inbox', 'Starred', 'Send email', 'Drafts', 'sun'].map((text, index) => (
-                                <ListItem button key={text}>
+                            {['Profile', 'Swipee'].map((text, index) => (
+                                <ListItem button key={text} onClick={() => history.push(`/${text.toLowerCase()}`)}>
                                     <ListItemIcon>{icon(text)}
                                     </ListItemIcon>
                                     <ListItemText primary={text}/>
@@ -250,10 +234,13 @@ const MainPage = ({include}) => {
 
                     </Drawer>
                     <main className={classes.content}>
-                        <div className={classes.toolbar} />
-                        <Typography paragraph>
+
+
+                        <div className={classes.toolbar}/>
+                        <Box>
                             {include}
-                        </Typography>
+                        </Box>
+
 
                     </main>
                 </div>

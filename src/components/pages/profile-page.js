@@ -1,17 +1,3 @@
-/**
- *
- *
- * THIS is Material UI Grid 3x3
- * source: https://material-ui.com/ru/components/grid/
- *
- *
- *
- */
-
-
-
-
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -20,18 +6,15 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        border:'none',
     },
     paper: {
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        border:'none',
-        boxShadow:'none',
     },
 }));
 
-const MainPageGrid=()=> {
+const ProfilePage=()=> {
     const classes = useStyles();
 
     function FormRow() {
@@ -67,4 +50,4 @@ const MainPageGrid=()=> {
     );
 }
 
-export default MainPageGrid
+export default ProfilePage
