@@ -40,15 +40,20 @@ const StyledMenuItem = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
 
     avatar: {
-        width: '100px',
-        height: '100px',
+        width: '50px',
+        height: '50px',
         marginLeft: 'auto',
-        border: '10px white solid'
+        border: '3px white solid'
 
     },
 
     button: {
         marginLeft: 'auto',
+        outline:'none',
+        '&:hover': {
+            backgroundColor: 'none',
+            outline:'none'
+        },
     }
 }));
 
